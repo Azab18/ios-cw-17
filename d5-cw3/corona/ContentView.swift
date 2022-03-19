@@ -6,9 +6,24 @@
 //
 
 import SwiftUI
+struct userCovidInfo: Identifiable {
+    var id = UUID()
+    var fullname: String
+    var area: String
+    var NumberofDoses: Int
+    
+}
+
+var people = [
+    userCovidInfo(fullname: "ziad", area: "salmia", NumberofDoses: 3),
+    userCovidInfo(fullname: "mo", area: "hawali", NumberofDoses: 2),
+    userCovidInfo(fullname: "osama", area: "dasma", NumberofDoses: 2),
+    userCovidInfo(fullname: "ahmad", area: "farwania", NumberofDoses: 0)
+]
 
 
-// يجب عمل هيكل وكائنات من الهيكل
+
+
 
 
 struct ContentView: View {
@@ -25,38 +40,19 @@ struct ContentView: View {
                     .font(.system(size: 30, weight: .bold, design: .default))
                     .padding()
                 // name of new cases
-                VStack{
-        // الحالة الأولى
-                // الاسم
-               Text("")
-// المنطقة
-                Text("")
-                    // عدد الجرعات
-               Text("")
-
-                Divider()
+                ForEach(people, id: \.id) { i in
+                    VStack{
+                        Text("name: \(i.fullname)")
+                        Text("area: \(i.area)")
+                        Text("no. of doses: \(i.NumberofDoses)")
+                        Divider()
+                    }
                 }
-                VStack{
-        // الحالة الثانية
-                // الاسم
-               Text("")
-                // المنطقة
-               Text("")
-    // عدد الجرعات
-               Text("")
-
-                Divider()
                 }
-                VStack{
-              // الحالة الثالثة
-                      // الاسم
-                     Text("")
-                      // المنطقة
-                     Text("")
-          // عدد الجرعات
-                     Text("")
-                }
-                Spacer()
+              
+            
+            
+            Spacer()
                 HStack{
                     Text("آخر تحديث ١٥-٣-٢٠٢٢")
                         .font(.system(size: 20, weight: .bold, design: .default))
@@ -67,10 +63,11 @@ struct ContentView: View {
                 .padding()
                 .border(Color.white, width: 5)
                 .cornerRadius(10)
-            }
+        }
+        
         }
     }
-}
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
